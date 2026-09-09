@@ -8,6 +8,10 @@
     {% tailwind_css %}
 </head>
 <body>
-    
+    <form action="/login" method="post">
+        <label for="login">Login</label>
+        <input id="login" type="text" name="login" value="{{ current_name }}">
+        <input type="submit" value="OK">
+    </form>
 </body>
 </html>

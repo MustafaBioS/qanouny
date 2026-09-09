@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 import os
 
@@ -36,6 +37,9 @@ ALLOWED_HOSTS = []
 
 TAILWIND_APP_NAME = "theme"
 
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+INTERNAL_IPS = ["127.0.0.1"]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,6 +52,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "main",
+    "login",
 ]
 
 MIDDLEWARE = [
@@ -84,12 +89,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ["DATABASE_URL"],
-        conn_max_age=600,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-DATABASES["default"]["OPTIONS"] = {"sslmode": "require"}
 
 
 # Password validation
