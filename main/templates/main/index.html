@@ -33,7 +33,7 @@
 <a href="#flow" class="nav-link" style="font:400 15px 'Public Sans',sans-serif">The process</a>
 <a href="#areas" class="nav-link" style="font:400 15px 'Public Sans',sans-serif">What we handle</a>
 <a href="#faq" class="nav-link" style="font:400 15px 'Public Sans',sans-serif">Questions</a>
-<a href="#signup" class="btn-primary-color" style="font:500 15px 'Public Sans',sans-serif;padding:10px 18px;border-radius:6px">Get started now</a>
+<a href="{% url 'intake' %}" class="btn-primary-color" style="font:500 15px 'Public Sans',sans-serif;padding:10px 18px;border-radius:6px">Get started now</a>
 </nav>
 </div>
 </header>
@@ -43,10 +43,10 @@
 <h1 style="margin:0;max-width:13ch;font:300 clamp(52px,9vw,108px)/1.02 Newsreader,serif;letter-spacing:-.022em;color:#111110;text-wrap:balance">The law, <em style="font-style:italic;font-weight:400">always</em> by your side.</h1>
 <p style="margin:32px 0 0;max-width:50ch;font:300 clamp(17px,1.8vw,20px)/1.65 'Public Sans',sans-serif;color:#57544e;text-wrap:pretty">Tell us what happened, once, in your own words. We hand it to a licensed specialist who has already read it.</p>
 <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:40px">
-<a href="#signup" class="btn-primary-color" style="display:inline-flex;align-items:center;gap:10px;font:500 16px 'Public Sans',sans-serif;padding:15px 24px;border-radius:7px">Get started now <span>→</span></a>
+<a href="{% url 'intake' %}" class="btn-primary-color" style="display:inline-flex;align-items:center;gap:10px;font:500 16px 'Public Sans',sans-serif;padding:15px 24px;border-radius:7px">Get started now <span>→</span></a>
 <a href="#flow" class="btn-outline-color" style="display:inline-flex;align-items:center;gap:10px;border:1px solid;font:400 16px 'Public Sans',sans-serif;padding:15px 24px;border-radius:7px">See the process</a>
 </div>
-<p style="margin:34px 0 0;font:300 15px/1.6 'Public Sans',sans-serif;color:#77746d">Free to start. No obligation. Practising across Egypt.</p>
+<p style="margin:34px 0 0;font:300 15px/1.6 'Public Sans',sans-serif;color:#6f6c65">Free to start. No obligation. Practising across Egypt.</p>
 </div>
 </section>
 
@@ -117,8 +117,8 @@
 </div>
 <div style="display:flex;flex-direction:column;gap:11px">
 <input type="email" placeholder="you@example.com" class="email-input" style="width:100%;background:#faf9f6;border:1px solid;border-radius:7px;padding:15px 16px;font:400 16px 'Public Sans',sans-serif;color:#1a1a19;outline:none">
-<a href="#signup" class="btn-primary-color" style="display:flex;align-items:center;justify-content:center;gap:10px;font:500 16px 'Public Sans',sans-serif;padding:15px 22px;border-radius:7px">Get started now <span>→</span></a>
-<p style="margin:2px 0 0;font:300 13.5px/1.6 'Public Sans',sans-serif;color:#77746d">By continuing you agree to our <a href="#legal">terms</a> and <a href="#legal">privacy notice</a>.</p>
+<a href="{% url 'intake' %}" class="btn-primary-color" style="display:flex;align-items:center;justify-content:center;gap:10px;font:500 16px 'Public Sans',sans-serif;padding:15px 22px;border-radius:7px">Get started now <span>→</span></a>
+<p style="margin:2px 0 0;font:300 13.5px/1.6 'Public Sans',sans-serif;color:#6f6c65">By continuing you agree to our <a href="#legal">terms</a> and <a href="#legal">privacy notice</a>.</p>
 </div>
 </div>
 </section>
@@ -214,7 +214,7 @@
 <div style="max-width:1000px;margin:0 auto;padding:clamp(52px,7vw,80px) clamp(20px,5vw,32px) 28px;display:flex;flex-wrap:wrap;gap:32px 56px;justify-content:space-between">
 <div style="display:flex;flex-direction:column;gap:12px;max-width:32ch">
 <span style="display:flex;align-items:center;gap:10px"><img src="https://cdn.hackclub.com/01a0886b-5b30-7231-ac9e-c3bf0f123bed/qanouny-mark.png" alt="Qanouny" style="display:block;flex:none;height:30px;width:auto"><span style="font:400 25px/1 Newsreader,serif;color:#1a1a19">Qanouny</span></span>
-<p style="margin:0;font:300 14.5px/1.6 'Public Sans',sans-serif;color:#77746d;text-wrap:pretty">A law firm with an intelligent front desk, practising across Egypt.</p>
+<p style="margin:0;font:300 14.5px/1.6 'Public Sans',sans-serif;color:#6f6c65;text-wrap:pretty">A law firm with an intelligent front desk, practising across Egypt.</p>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:12px 44px">
 <div style="display:flex;flex-direction:column;gap:11px">
@@ -238,8 +238,8 @@
 </div>
 <div style="max-width:1000px;margin:0 auto;padding:0 clamp(20px,5vw,32px) 40px">
 <div style="border-top:1px solid #e6e3dc;padding-top:18px;display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between">
-<p style="margin:0;max-width:68ch;font:300 13px/1.7 'Public Sans',sans-serif;color:#87847d;text-wrap:pretty">Qanouny is a regulated law firm. Automated intake is not legal advice, and no solicitor and client relationship is formed until an engagement letter is signed.</p>
-<p style="margin:0;font:300 13px/1.7 'Public Sans',sans-serif;color:#87847d">© {% now "Y" %} Qanouny</p>
+<p style="margin:0;max-width:68ch;font:300 13px/1.7 'Public Sans',sans-serif;color:#6f6c65;text-wrap:pretty">Qanouny is a regulated law firm. Automated intake is not legal advice, and no solicitor and client relationship is formed until an engagement letter is signed.</p>
+<p style="margin:0;font:300 13px/1.7 'Public Sans',sans-serif;color:#6f6c65">© {% now "Y" %} Qanouny</p>
 </div>
 </div>
 </footer>
