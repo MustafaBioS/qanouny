@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var blobLayers = document.querySelectorAll('.intake-blob-layer');
   var textarea = document.querySelector('.intake-textarea');
   var submitLink = document.querySelector('.intake-submit');
+  var nameInput = document.querySelector('.intake-name');
+  var phoneInput = document.querySelector('.intake-phone');
+  var emailInput = document.querySelector('.intake-email');
 
   var current = 0;
   var answers = {};
@@ -79,12 +82,35 @@ document.addEventListener('DOMContentLoaded', function () {
   backButton.addEventListener('click', goBack);
   skipButton.addEventListener('click', skip);
 
-  submitLink.addEventListener('click', function () {
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function contactIsReady() {
+    return !!(nameInput.value.trim() && phoneInput.value.trim() && isValidEmail(emailInput.value.trim()));
+  }
+
+  function updateSubmitState() {
+    submitLink.classList.toggle('intake-submit--disabled', !contactIsReady());
+  }
+
+  [nameInput, phoneInput, emailInput].forEach(function (input) {
+    input.addEventListener('input', updateSubmitState);
+  });
+
+  submitLink.addEventListener('click', function (e) {
+    if (!contactIsReady()) {
+      e.preventDefault();
+      return;
+    }
     try {
       localStorage.setItem('qanouny.survey', JSON.stringify(answers));
       localStorage.setItem('qanouny.description', (textarea.value || '').trim());
+      localStorage.setItem('qanouny.name', nameInput.value.trim());
+      localStorage.setItem('qanouny.phone', phoneInput.value.trim());
+      localStorage.setItem('qanouny.email', emailInput.value.trim());
       localStorage.removeItem('qanouny.case');
-    } catch (e) {}
+    } catch (e2) {}
   });
 
   addEventListener('keydown', function (e) {

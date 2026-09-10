@@ -67,6 +67,13 @@ textarea::placeholder{color:#6f6c65;}
 
 .intake-lede{margin:0;max-width:52ch;font:300 17px/1.65 'Public Sans',sans-serif;color:#57544e;text-wrap:pretty;}
 
+.intake-contact{display:flex;flex-wrap:wrap;gap:10px;}
+.intake-contact input{
+  flex:1 1 200px;min-width:0;background:#fdfcfa;border:1px solid #ded9cf;border-radius:9px;
+  padding:14px 16px;font:400 16px 'Public Sans',sans-serif;color:#1a1a19;outline:none;
+}
+.intake-contact input:focus{border-color:#1f2c4a;}
+
 .intake-textarea{
   width:100%;background:#faf9f6;border:1px solid #ded9cf;border-radius:10px;
   padding:16px;font:300 16px/1.6 'Public Sans',sans-serif;color:#1a1a19;
@@ -80,6 +87,7 @@ textarea::placeholder{color:#6f6c65;}
   font:500 16px 'Public Sans',sans-serif;padding:15px 24px;border-radius:7px;
 }
 .intake-submit:hover{background:#2e4067;color:#faf9f6;}
+.intake-submit--disabled{background:#b3aea3;pointer-events:none;}
 .intake-submit-hint{font:300 14.5px 'Public Sans',sans-serif;color:#6f6c65;}
 
 .intake-summary-block{

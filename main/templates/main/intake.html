@@ -80,9 +80,14 @@
 <div class="intake-step intake-done" style="display:none">
 <h1 class="intake-heading">Now tell us what happened.</h1>
 <p class="intake-lede">In your own words, the way you would tell a friend. Our agent will ask about anything it needs, then pass the file to a specialist.</p>
+<div class="intake-contact">
+<input type="text" class="intake-name" placeholder="Full name" autocomplete="name" required>
+<input type="tel" class="intake-phone" placeholder="Phone number" autocomplete="tel" required>
+<input type="email" class="intake-email" placeholder="Email address" autocomplete="email" required>
+</div>
 <textarea class="intake-textarea" rows="7" placeholder="Start anywhere. Dates, names and documents can come later."></textarea>
 <div class="intake-submit-row">
-<a href="{% url 'conversation' %}" class="intake-submit">Talk it through <span>→</span></a>
+<a href="{% url 'conversation' %}" class="intake-submit intake-submit--disabled">Talk it through <span>→</span></a>
 <span class="intake-submit-hint">Around five minutes. You can stop and come back.</span>
 </div>
 <div class="intake-summary-block">
