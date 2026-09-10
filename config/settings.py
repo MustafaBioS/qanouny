@@ -35,6 +35,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+HC_AI_API_KEY = os.environ.get("HC_AI")
+HC_CDN_API_KEY = os.environ.get("HC_CDN")
+
 TAILWIND_APP_NAME = "theme"
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

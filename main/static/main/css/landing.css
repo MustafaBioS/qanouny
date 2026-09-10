@@ -1,0 +1,27 @@
+html,body{margin:0;padding:0;background:#faf9f6;}
+*{box-sizing:border-box;}
+a{color:#1f2c4a;text-decoration:none;}
+a:hover{color:#425c93;}
+::selection{background:rgba(31,44,74,.14);}
+input::placeholder{color:#8e8b84;}
+
+.nav-link, .footer-link { color:#57544e; }
+.nav-link:hover, .footer-link:hover { color:#1a1a19; }
+
+.btn-primary-color { background:#1f2c4a; color:#faf9f6; }
+.btn-primary-color:hover { background:#2e4067; color:#faf9f6; }
+
+.btn-outline-color { border-color:#d6d2c9; color:#1a1a19; }
+.btn-outline-color:hover { border-color:#1f2c4a; color:#1f2c4a; }
+
+.email-input { border-color:#d6d2c9; }
+.email-input:focus { border-color:#1f2c4a; }
+
+.faq-item .faq-icon-vert { transition:opacity .25s ease; }
+.faq-item.open .faq-icon-vert { opacity:0; }
+.faq-panel { overflow:hidden; max-height:0; transition:max-height .35s ease; }
+
+@media (prefers-reduced-motion: no-preference){
+  [data-reveal]{transition:opacity .55s ease,transform .55s ease;}
+  [data-reveal="pending"]{opacity:0;transform:translateY(10px);}
+}
