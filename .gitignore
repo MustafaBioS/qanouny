@@ -24,5 +24,3 @@ theme/static/css/dist/
 Thumbs.db
 
 .idea/
-
-db.sqlite3
