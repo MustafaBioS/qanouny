@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qanouny — Conversation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.hackclub.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main/css/conversation.css' %}">
+</head>
+<body>
+
+<div class="conv-page">
+
+<div class="conv-blobs" aria-hidden="true">
+<div class="conv-blob-layer" style="opacity:1">
+<div style="position:absolute;top:-90px;right:-150px;width:520px;height:450px;background:#48376D;opacity:.11;filter:blur(56px);border-radius:62% 38% 47% 53%/44% 61% 39% 56%;transform:rotate(-12deg)"></div>
+<div style="position:absolute;bottom:-140px;left:-160px;width:440px;height:390px;background:#1f2c4a;opacity:.08;filter:blur(56px);border-radius:38% 62% 55% 45%/60% 41% 59% 40%"></div>
+</div>
+<div class="conv-blob-layer">
+<div style="position:absolute;top:-70px;left:-150px;width:490px;height:430px;background:#8f7a3f;opacity:.12;filter:blur(54px);border-radius:55% 45% 33% 67%/48% 58% 42% 52%;transform:rotate(11deg)"></div>
+<div style="position:absolute;bottom:-120px;right:-140px;width:420px;height:370px;background:#48376D;opacity:.1;filter:blur(54px);border-radius:44% 56% 62% 38%/57% 39% 61% 43%"></div>
+</div>
+<div class="conv-blob-layer">
+<div style="position:absolute;top:-80px;right:-130px;width:470px;height:410px;background:#2f5d57;opacity:.11;filter:blur(54px);border-radius:66% 34% 41% 59%/38% 62% 38% 62%;transform:rotate(22deg)"></div>
+<div style="position:absolute;bottom:-130px;left:-140px;width:430px;height:380px;background:#1f2c4a;opacity:.09;filter:blur(54px);border-radius:52% 48% 39% 61%/45% 59% 41% 55%"></div>
+</div>
+<div class="conv-blob-layer">
+<div style="position:absolute;top:-60px;left:-140px;width:460px;height:400px;background:#9c5a44;opacity:.11;filter:blur(54px);border-radius:48% 52% 61% 39%/56% 42% 58% 44%;transform:rotate(16deg)"></div>
+<div style="position:absolute;bottom:-140px;right:-130px;width:440px;height:390px;background:#8f7a3f;opacity:.1;filter:blur(56px);border-radius:59% 41% 36% 64%/61% 37% 63% 39%"></div>
+</div>
+</div>
+
+<header class="conv-header">
+<div class="conv-header-row">
+<a href="{% url 'index' %}" class="conv-logo">
+<img src="https://cdn.hackclub.com/01a0886b-5b30-7231-ac9e-c3bf0f123bed/qanouny-mark.png" alt="Qanouny">
+<span>Qanouny</span>
+</a>
+<span class="conv-case-line"></span>
+</div>
+<div class="conv-progress-track">
+<div class="conv-progress-bar"></div>
+</div>
+</header>
+
+<main class="conv-main">
+<div class="conv-content">
+
+<div class="conv-busy">
+<p class="conv-busy-text">Reading what you sent</p>
+<div class="conv-dots">
+<span></span><span></span><span></span>
+</div>
+</div>
+
+<div class="conv-ask-text" style="display:none">
+<h1 class="conv-heading conv-question"></h1>
+<textarea class="conv-textarea" rows="5"></textarea>
+</div>
+
+<div class="conv-ask-file" style="display:none">
+<h1 class="conv-heading conv-question"></h1>
+<div class="conv-file-card" style="display:none">
+<span class="conv-file-ext"></span>
+<span class="conv-file-info">
+<span class="conv-file-name"></span>
+<span class="conv-file-size"></span>
+</span>
+<button type="button" class="conv-file-remove">Remove</button>
+</div>
+<label class="conv-dropzone">
+<span class="conv-dropzone-label">Drop your file here, or choose one</span>
+<span class="conv-dropzone-hint"></span>
+<input type="file" class="conv-file-input">
+</label>
+<p class="conv-file-error" style="display:none"></p>
+</div>
+
+<div class="conv-reviewing" style="display:none">
+<h1 class="conv-heading">Here is what we will send.</h1>
+<p class="conv-lede">Read it over. Once you submit, a supervising lawyer reviews the file and passes it to the right specialist.</p>
+<div class="conv-review-list"></div>
+<div class="conv-review-actions">
+<button type="button" class="conv-change">← Change something</button>
+<button type="button" class="conv-start-over">Start over</button>
+<button type="button" class="conv-submit-case">Submit my case <span>→</span></button>
+</div>
+</div>
+
+<div class="conv-done" style="display:none">
+<h1 class="conv-heading">Your file is with a specialist.</h1>
+<p class="conv-closing"></p>
+<p class="conv-match-line"></p>
+<div class="conv-recap-block">
+<span class="conv-recap-label">What we have on file</span>
+<p class="conv-recap"></p>
+</div>
+<div class="conv-done-actions">
+<a href="{% url 'index' %}" class="conv-home">Back to home</a>
+<button type="button" class="conv-new-case">Start a new case</button>
+</div>
+</div>
+
+<div class="conv-nav-row" style="display:none">
+<button type="button" class="conv-back" style="display:none">← Back</button>
+<button type="button" class="conv-skip" style="display:none">Skip this question</button>
+<button type="button" class="conv-continue" disabled>Continue <span>→</span></button>
+</div>
+
+</div>
+</main>
+
+<footer class="conv-footer">
+<div class="conv-footer-row">
+<p>Everything here is encrypted and shared only with the lawyer you approve.</p>
+<a href="{% url 'intake' %}">Edit your survey</a>
+</div>
+</footer>
+
+</div>
+
+<script>window.QANOUNY_URLS = {
+  turn: "{% url 'conversation_turn' %}",
+  upload: "{% url 'conversation_upload' %}",
+  submit: "{% url 'conversation_submit' %}",
+  intake: "{% url 'intake' %}"
+};</script>
+<script src="{% static 'main/js/conversation.js' %}"></script>
+</body>
+</html>

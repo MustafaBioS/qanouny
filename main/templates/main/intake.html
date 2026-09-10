@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qanouny — Intake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.hackclub.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main/css/intake.css' %}">
+</head>
+<body>
+
+<div class="intake-page">
+
+<div class="intake-blobs" aria-hidden="true">
+<div class="intake-blob-layer" style="opacity:1">
+<div style="position:absolute;top:-80px;right:-140px;width:520px;height:440px;border-radius:62% 38% 47% 53%/44% 61% 39% 56%;transform:rotate(-12deg);background:#48376D;opacity:.14;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-140px;left:-150px;width:420px;height:380px;border-radius:38% 62% 55% 45%/60% 41% 59% 40%;background:#1f2c4a;opacity:.08;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-60px;left:-150px;width:480px;height:420px;border-radius:55% 45% 33% 67%/48% 58% 42% 52%;transform:rotate(10deg);background:#8f7a3f;opacity:.13;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-120px;right:-130px;width:400px;height:360px;border-radius:44% 56% 62% 38%/57% 39% 61% 43%;background:#48376D;opacity:.1;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-70px;right:-120px;width:460px;height:400px;border-radius:66% 34% 41% 59%/38% 62% 38% 62%;transform:rotate(24deg);background:#2f5d57;opacity:.12;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-130px;left:-140px;width:430px;height:380px;border-radius:52% 48% 39% 61%/45% 59% 41% 55%;background:#1f2c4a;opacity:.09;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-90px;left:-130px;width:500px;height:430px;border-radius:37% 63% 58% 42%/52% 44% 56% 48%;transform:rotate(-9deg);background:#1f2c4a;opacity:.12;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-110px;right:-140px;width:420px;height:370px;border-radius:59% 41% 36% 64%/61% 37% 63% 39%;background:#8f7a3f;opacity:.11;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-70px;right:-150px;width:470px;height:410px;border-radius:48% 52% 61% 39%/56% 42% 58% 44%;transform:rotate(18deg);background:#9c5a44;opacity:.12;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-130px;left:-120px;width:410px;height:360px;border-radius:63% 37% 42% 58%/39% 61% 39% 61%;background:#48376D;opacity:.1;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-80px;left:-130px;width:490px;height:420px;border-radius:51% 49% 38% 62%/47% 57% 43% 53%;transform:rotate(13deg);background:#2f5d57;opacity:.11;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-120px;right:-140px;width:430px;height:380px;border-radius:58% 42% 63% 37%/40% 60% 40% 60%;background:#48376D;opacity:.1;filter:blur(54px)"></div>
+</div>
+<div class="intake-blob-layer">
+<div style="position:absolute;top:-60px;left:-140px;width:460px;height:400px;border-radius:57% 43% 61% 39%/49% 52% 48% 51%;transform:rotate(-14deg);background:#48376D;opacity:.11;filter:blur(54px)"></div>
+<div style="position:absolute;top:34%;right:-150px;width:430px;height:380px;border-radius:41% 59% 57% 43%/60% 38% 62% 40%;background:#2f5d57;opacity:.1;filter:blur(54px)"></div>
+<div style="position:absolute;bottom:-140px;left:18%;width:400px;height:350px;border-radius:45% 55% 34% 66%/62% 38% 62% 38%;background:#8f7a3f;opacity:.1;filter:blur(54px)"></div>
+</div>
+</div>
+
+<header class="intake-header">
+<div class="intake-header-row">
+<a href="{% url 'index' %}" class="intake-logo">
+<img src="https://cdn.hackclub.com/01a0886b-5b30-7231-ac9e-c3bf0f123bed/qanouny-mark.png" alt="Qanouny">
+<span>Qanouny</span>
+</a>
+<span class="intake-counter"></span>
+</div>
+<div class="intake-progress-track">
+<div class="intake-progress-bar"></div>
+</div>
+</header>
+
+<main class="intake-main">
+<div class="intake-content">
+
+{% for step in steps %}
+<div class="intake-step" data-key="{{ step.key }}" style="display:none">
+<h1 class="intake-heading">{{ step.heading }}</h1>
+<div class="intake-options intake-options--{{ step.style }}">
+{% for option in step.options %}
+<button type="button" class="intake-option{% if option.muted %} intake-option--muted{% endif %}" data-value="{{ option.text }}">
+{% if option.letter %}<span class="intake-badge">{{ option.letter }}</span>{% endif %}
+<span>{{ option.text }}</span>
+</button>
+{% endfor %}
+</div>
+</div>
+{% endfor %}
+
+<div class="intake-step intake-done" style="display:none">
+<h1 class="intake-heading">Now tell us what happened.</h1>
+<p class="intake-lede">In your own words, the way you would tell a friend. Our agent will ask about anything it needs, then pass the file to a specialist.</p>
+<textarea class="intake-textarea" rows="7" placeholder="Start anywhere. Dates, names and documents can come later."></textarea>
+<div class="intake-submit-row">
+<a href="{% url 'conversation' %}" class="intake-submit">Talk it through <span>→</span></a>
+<span class="intake-submit-hint">Around five minutes. You can stop and come back.</span>
+</div>
+<div class="intake-summary-block">
+<span class="intake-summary-label">What you told us</span>
+<p class="intake-summary"></p>
+</div>
+</div>
+
+<div class="intake-nav-row">
+<button type="button" class="intake-back" style="display:none">← Back</button>
+<button type="button" class="intake-skip">Skip this question</button>
+</div>
+
+</div>
+</main>
+
+<footer class="intake-footer">
+<div class="intake-footer-row">
+<p>Your answers are encrypted and shared only with the lawyer you approve.</p>
+<a href="{% url 'index' %}">Leave the survey</a>
+</div>
+</footer>
+
+</div>
+
+<script src="{% static 'main/js/intake.js' %}"></script>
+</body>
+</html>
