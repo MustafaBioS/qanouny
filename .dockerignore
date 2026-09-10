@@ -1,0 +1,10 @@
+.git/
+.idea/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+staticfiles/
+.env
+node_modules/
+docs/screenshots/

@@ -4,3 +4,5 @@ python-dotenv==1.2.3
 tailwind==3.1.5b0
 requests==2.34.2
 dj-config-url==0.1.1
+whitenoise==6.11.0
+gunicorn==23.0.0
