@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var questionEls = document.querySelectorAll('.conv-question');
 
   var state = {
-    caseId: '', email: '', survey: {}, description: '',
+    caseId: '', name: '', phone: '', email: '', survey: {}, description: '',
     turns: [], idx: 0, busy: true, done: false, submitted: false, match: null, closing: '',
   };
 
@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function persist() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        caseId: state.caseId, email: state.email, survey: state.survey, description: state.description,
+        caseId: state.caseId, name: state.name, phone: state.phone, email: state.email,
+        survey: state.survey, description: state.description,
         turns: state.turns, idx: state.idx, done: state.done, submitted: state.submitted,
         match: state.match, closing: state.closing,
       }));
@@ -364,8 +365,13 @@ document.addEventListener('DOMContentLoaded', function () {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken') },
       body: JSON.stringify({
-        caseId: state.caseId, email: state.email, survey: state.survey, description: state.description,
+        caseId: state.caseId, name: state.name, phone: state.phone, email: state.email,
+        survey: state.survey, description: state.description,
         transcript: transcriptFor(state.turns), match: state.match,
+        exchanges: state.turns.filter(function (t) { return t.answer; }).map(function (t) {
+          return { q: t.question, a: t.answer.kind === 'text' ? t.answer.value : t.answer.kind === 'file' ? t.answer.name : 'Skipped' };
+        }),
+        files: state.turns.filter(function (t) { return t.answer && t.answer.kind === 'file'; }).map(function (t) { return t.answer; }),
       }),
     })
       .catch(function () {})
@@ -381,6 +387,9 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('qanouny.survey');
       localStorage.removeItem('qanouny.description');
+      localStorage.removeItem('qanouny.name');
+      localStorage.removeItem('qanouny.phone');
+      localStorage.removeItem('qanouny.email');
     } catch (e) {}
     location.href = urls.intake;
   }
@@ -394,14 +403,18 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    var survey = {}, email = '', description = '';
+    var survey = {}, name = '', phone = '', email = '', description = '';
     try {
       survey = JSON.parse(localStorage.getItem('qanouny.survey') || '{}');
+      name = localStorage.getItem('qanouny.name') || '';
+      phone = localStorage.getItem('qanouny.phone') || '';
       email = localStorage.getItem('qanouny.email') || '';
       description = localStorage.getItem('qanouny.description') || '';
     } catch (e) {}
     state.caseId = 'QN-' + Math.random().toString(36).slice(2, 6).toUpperCase();
     state.survey = survey;
+    state.name = name;
+    state.phone = phone;
     state.email = email;
     state.description = description;
     render();

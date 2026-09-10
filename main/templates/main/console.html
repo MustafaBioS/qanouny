@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qanouny — Counsel console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.hackclub.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Public+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main/css/console.css' %}">
+</head>
+<body>
+
+<div class="console-page">
+
+<header class="console-header">
+<div class="console-header-row">
+<a href="#/cases?status=pending" class="console-logo">
+<img src="https://cdn.hackclub.com/01a0886b-5b30-7231-ac9e-c3bf0f123bed/qanouny-mark.png" alt="Qanouny">
+<span>Qanouny</span>
+</a>
+<span class="console-whoami">{{ request.user.get_username }}</span>
+<form method="post" action="{% url 'console_logout' %}" class="console-signout-form">
+{% csrf_token %}
+<button type="submit" class="console-signout">Sign out</button>
+</form>
+</div>
+</header>
+
+<main class="console-main">
+
+<div class="console-list">
+<div class="console-list-title-row">
+<h1 class="console-list-title"></h1>
+<span class="console-list-standfirst"></span>
+</div>
+<div class="console-status-tabs">
+<a href="#/cases?status=pending" data-status="pending">Pending <span></span></a>
+<a href="#/cases?status=ongoing" data-status="ongoing">Ongoing <span></span></a>
+<a href="#/cases?status=review" data-status="review">In review <span></span></a>
+<a href="#/cases?status=closed" data-status="closed">Closed <span></span></a>
+<a href="#/cases?status=all" data-status="all">All</a>
+</div>
+<div class="console-rows"></div>
+<p class="console-empty" style="display:none"></p>
+</div>
+
+<div class="console-detail" style="display:none">
+<a class="console-detail-back"></a>
+
+<div class="console-detail-head">
+<h1 class="console-detail-client"></h1>
+<span class="console-detail-status-pill"></span>
+<span class="console-detail-meta"></span>
+</div>
+
+<div class="console-summary-block">
+<p class="console-summary"></p>
+<span class="console-provenance"></span>
+</div>
+
+<div class="console-facts"></div>
+
+<div class="console-section">
+<span class="console-section-label">What the agent asked</span>
+<div class="console-exchanges"></div>
+</div>
+
+<div class="console-section">
+<span class="console-section-label">Attached</span>
+<div class="console-files"></div>
+</div>
+
+<div class="console-pending-actions" style="display:none">
+<button type="button" class="console-accept">Take this case <span>→</span></button>
+<button type="button" class="console-decline-pending">Conflict or decline</button>
+</div>
+
+<div class="console-mine" style="display:none">
+
+<div class="console-contact-row">
+<div class="console-contact-item">
+<a class="console-email"></a>
+<span>Email the client</span>
+</div>
+<div class="console-contact-item">
+<span class="console-phone"></span>
+<span>Mobile</span>
+</div>
+</div>
+
+<div class="console-stages-fee-row">
+<div class="console-stages-col">
+<span class="console-section-label">The record</span>
+<div class="console-stages"></div>
+</div>
+<div class="console-fee-col">
+<span class="console-section-label">Fee</span>
+<div class="console-fee-existing" style="display:none">
+<span class="console-fee-line"></span>
+<span class="console-fee-state"></span>
+<button type="button" class="console-fee-revise">Revise</button>
+</div>
+<div class="console-fee-form">
+<div class="console-fee-types">
+<button type="button" data-type="Hourly">Hourly</button>
+<button type="button" data-type="Fixed">Fixed</button>
+<button type="button" data-type="Percentage">Percentage</button>
+<button type="button" data-type="Other">Other</button>
+</div>
+<div class="console-fee-amount-row">
+<input type="text" class="console-fee-amount">
+<button type="button" class="console-fee-send">Send the quote</button>
+</div>
+<span class="console-fee-hint">Nothing is billed until the client accepts it.</span>
+</div>
+</div>
+</div>
+
+<div class="console-section">
+<span class="console-section-label">Your notes</span>
+<textarea class="console-notes" rows="3" placeholder="Nothing here is shared with the client."></textarea>
+</div>
+
+<div class="console-section">
+<button type="button" class="console-history-toggle"></button>
+<div class="console-history" style="display:none"></div>
+</div>
+
+<div class="console-review-actions" style="display:none">
+<p>With an administrator, who is checking the record you filed. The case closes once it is verified.</p>
+<button type="button" class="console-withdraw">Pull it back</button>
+</div>
+
+<div class="console-ongoing-actions" style="display:none">
+<button type="button" class="console-complete">Ask the firm to close it <span>→</span></button>
+<span class="console-resolve-hint"></span>
+<button type="button" class="console-decline-ongoing">Hand it over</button>
+</div>
+
+<div class="console-closed-actions" style="display:none">
+<button type="button" class="console-reopen">Reopen this case</button>
+</div>
+
+</div>
+
+<p class="console-note-banner" style="display:none"></p>
+
+</div>
+
+</main>
+</div>
+
+<script>window.QANOUNY_URLS = {
+  caseList: "{% url 'console_case_list' %}",
+  caseDetail: "{% url 'console_case_detail' case_id='__ID__' %}",
+  caseAction: "{% url 'console_case_action' case_id='__ID__' %}",
+  upload: "{% url 'conversation_upload' %}"
+};</script>
+<script src="{% static 'main/js/console.js' %}"></script>
+</body>
+</html>
