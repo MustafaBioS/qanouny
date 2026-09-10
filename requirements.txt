@@ -2,3 +2,4 @@ Django==6.1.1
 psycopg2-binary==2.9.12
 python-dotenv==1.2.3
 tailwind==3.1.5b0
+requests==2.34.2
